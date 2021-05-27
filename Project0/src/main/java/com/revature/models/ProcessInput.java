@@ -9,10 +9,12 @@ public class ProcessInput {
 		//for now this is dummy data later on we will change this
 		String correctUsername = "test";
 		String correctPassword = "password";
-		
+		boolean running = true;
 		String username, password;
+		
 		//ideally we want a way to close this while loop.
-		while(in.hasNext()) {
+		while(running) {
+			System.out.println("Type Logout to leave the program");
 			System.out.println("Please type in your user name:");
 			username = in.nextLine();
 			System.out.println("PLease type in your password:");
@@ -24,8 +26,10 @@ public class ProcessInput {
 				//for now we will pass a  dummy function
 				login();
 				//this currently throws an error
-			} else {
-				System.out.println("Pleas retype your username or password");
+			} else if(in.nextLine().equals("Logout")) {
+				running = false;
+			}else {
+				System.out.println("Please retype your username and password");
 			}
 		}
 		
