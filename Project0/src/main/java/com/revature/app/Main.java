@@ -20,8 +20,13 @@ public class Main {
 		}
 		//It freaking works.
 		System.out.println(ur.getById(3));
+		//oddly it will set the id to 6 even if i set it here as 7
 		User newUser = new User(7,"Test","pass","user",true);
 		ur.add(newUser);
+		System.out.println(ur.getAll());
+		
+		ur.add(newUser);
+		//it now fails successfully.
 		System.out.println(ur.getAll());
 
 	}

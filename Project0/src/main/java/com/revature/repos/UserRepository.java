@@ -12,7 +12,7 @@ public class UserRepository implements GenericRepository<User>{
 		//i want to first check if the list contains that user.
 		if(MockDB.userList.contains(u)) {
 			System.out.println("Please enter a different username. We have a user with that name");
-			
+			return null;
 		}
 		//I know my formatting might look a little ugly but I can read it
 		//which matters and helps me keep track
