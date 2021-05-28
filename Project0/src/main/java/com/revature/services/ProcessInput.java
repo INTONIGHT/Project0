@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class ProcessInput {
 
 	public void processString() {
+		//try to change this logic to fit what Ive designed.
 		Scanner in = new Scanner(System.in);
 		//for now this is dummy data later on we will change this
 		String correctUsername = "test";
