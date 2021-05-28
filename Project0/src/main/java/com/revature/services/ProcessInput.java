@@ -1,4 +1,4 @@
-package com.revature.models;
+package com.revature.services;
 
 import java.util.Scanner;
 

@@ -1,4 +1,6 @@
-package com.revature.models;
+package com.revature.services;
+
+import com.revature.models.User;
 
 public class BankTransactions extends User{
 	

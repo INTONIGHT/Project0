@@ -19,6 +19,15 @@ public class User {
 		this.isApproved = isApproved;
 		this.balance = balance;
 	}
+	
+	public User(Integer id, String username, String password, String role, boolean isApproved) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.isApproved = isApproved;
+	}
 	//All the getters and setters.
 	public Integer getId() {
 		return id;
