@@ -1,4 +1,4 @@
-package com.revature.models;
+package com.revature.app;
 //main method will run the code here.
 public class Main {
 
