@@ -38,7 +38,10 @@ public class EmployeeRepository implements GenericRepository<User>{
 				.findFirst().orElse(null);
 		return e;
 	}
-
+	//might return boolean
+	public void Approve(User user) {
+		
+	}
 	@Override
 	public List<User> getAll() {
 		// TODO Auto-generated method stub
@@ -47,7 +50,18 @@ public class EmployeeRepository implements GenericRepository<User>{
 
 	@Override
 	public void update(User change) {
+		//iterate over the list checking for id matches
+		//once you find the id get that object than change it.
+		//ie for each loop if cat .id == passed in id
+		//cat.name = passed in cat name.
+		//update. if you are updating do everything. only update changes.
+		//return the list.
+		//maybe map a map from the list. might use a lambda function.
+		//iterate over the list 
 		// TODO Auto-generated method stub
+		//i might need to set this to a variable.
+		MockDB.userList.forEach((id) -> id.equals(change));
+		
 		
 	}
 
