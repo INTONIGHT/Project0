@@ -38,6 +38,19 @@ public class EmployeeRepository implements GenericRepository<User>{
 				.findFirst().orElse(null);
 		return e;
 	}
+	//I know its aalmost identical deal with it ;)
+	public User getUsername(String username) {
+		User u = MockDB.employeeList.stream()
+				.filter((user) -> user.getUsername() == username)
+				.findFirst().orElse(null);
+		return u;
+	}
+	public User getPassword(String password) {
+		User u = MockDB.employeeList.stream()
+				.filter((user) -> user.getPassword() == password)
+				.findFirst().orElse(null);
+		return u;
+	}
 	//might return boolean
 	public void Approve(User user) {
 		
