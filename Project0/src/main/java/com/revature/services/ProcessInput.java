@@ -2,14 +2,14 @@ package com.revature.services;
 
 import java.util.Scanner;
 
+import com.revature.utils.MockDB;
+
 public class ProcessInput {
 
 	public void processString() {
 		//try to change this logic to fit what Ive designed.
 		Scanner in = new Scanner(System.in);
 		//for now this is dummy data later on we will change this
-		String correctUsername = "test";
-		String correctPassword = "password";
 		boolean running = true;
 		String username, password;
 		
@@ -18,7 +18,7 @@ public class ProcessInput {
 			System.out.println("Type Logout to leave the program");
 			System.out.println("Please type in your user name:");
 			username = in.nextLine();
-			System.out.println("PLease type in your password:");
+			System.out.println("Please type in your password:");
 			password = in.nextLine();
 			//here we will want to verify that the username
 			//and password are correct.
