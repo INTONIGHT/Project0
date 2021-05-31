@@ -34,13 +34,12 @@ public class UserRepository implements GenericRepository<User>{
 		return u;
 	}
 	//a funciton to filter the employee list to get a username.
-	public String getUsername(String username) {
+	public int getUsername(String username) {
 		User u = MockDB.userList.stream()
 				.filter((user) -> user.getUsername() == username)
 				.findFirst().orElse(null);
+		return u.getId();
 		
-		
-		return u.getUsername();
 	}
 	public String getPassword(String password) {
 		User u = MockDB.userList.stream()
