@@ -17,7 +17,7 @@ public class ProcessInput {
 		EmployeeRepository er = new EmployeeRepository();
 		boolean running = true;
 		String username, password ;
-		User realUser; //way to hold the users maybe
+		User realUser; 
 		int findUser ;
 		//might change this
 		boolean findPass;
@@ -38,23 +38,18 @@ public class ProcessInput {
 			
 			realUser = ur.getById(findUser);
 			
-			//me testing
-			System.out.println(findUser + "This is find user");
-			System.out.println(username + "This is username");
-			System.out.println(realUser + "This is real user");
+			
 			//here we will want to verify that the username
 			//and password are correct.
-			//this might not work
+			
 			//|| username.equals(er.getUsername(username)) && password.equals(er.getPassword(password))
-			//remove this.
-			//&& password.equals(ur.getPassword(password))))
+		
+			System.out.println(username.equals(realUser.getUsername()) + " this is the truth value");
 			try {
-			if(username == realUser.getUsername() && findPass == true) {
-				//here we will want to log into the program and show the account
-				//for now we will pass a  dummy function
-				//login();
-				System.out.println("Success");
-				//this currently throws an error
+			if(username.equals(realUser.getUsername()) && findPass == true) {
+				//can now do what I want here as it works as intended.
+				System.out.println(realUser);
+				
 			} else if(in.nextLine().equals("Logout")) {
 				running = false;
 			}else {
