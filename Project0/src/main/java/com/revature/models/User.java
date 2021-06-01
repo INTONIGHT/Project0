@@ -4,13 +4,13 @@ public class User {
 	private Integer id;
 	private String username, password ,role ;
 	boolean isApproved;
-	private int balance;
+	private double balance;
 	//empty constructor probably wont use it
 	public User() {
 		super();
 	}
 	//Might add more constructors but will only do that later
-	public User(Integer id, String username, String password, String role, boolean isApproved, int balance) {
+	public User(Integer id, String username, String password, String role, boolean isApproved, double balance) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -59,12 +59,13 @@ public class User {
 	public void setApproved(boolean isApproved) {
 		this.isApproved = isApproved;
 	}
-	public int getBalance() {
+	public double getBalance() {
 		return balance;
 	}
-	public void setBalance(int balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
 	}
+	
 	//To string because of course
 	@Override
 	public String toString() {
@@ -76,7 +77,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + balance;
+		result = (int) (prime * result + balance);
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + (isApproved ? 1231 : 1237);
 		result = prime * result + ((password == null) ? 0 : password.hashCode());

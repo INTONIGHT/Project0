@@ -52,7 +52,9 @@ public class ProcessInput {
 					if (username.equals(realUser.getUsername()) && findPass == true) {
 						// can now do what I want here as it works as intended.
 						System.out.println(realUser);
-						login();
+						//this is to make the method in a different class.
+						Login log = new Login();
+						log.LoginUser();
 						running = false;
 
 					} else {
@@ -104,11 +106,7 @@ public class ProcessInput {
 
 	}
 
-	public void login() {
-		System.out.println("Please type Deposit and then an amount to deposit an amount in you account");
-		System.out.println("\n Type withdraw to withdraw an amount");
-		
-	}
+	
 	public void employeeLogin() {
 		System.out.println("Please type out access to see the user accounts");
 		

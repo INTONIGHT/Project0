@@ -21,14 +21,6 @@ public class MockDB {
 		employeeList.add(new User(1,"Admin","password","employee",true));
 	}
 	//remove this main method later on for now its to test everything is working as intended
-	public static void main(String[] args) {
-		for(User u : userList) {
-			System.out.println(u);
-		}
-		System.out.println("\n");
-		for(User e : employeeList) {
-			System.out.println(e);
-		}
-	}
+	
 	
 }
