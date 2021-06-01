@@ -68,6 +68,32 @@ public class ProcessInput {
 				running = false;
 				break;
 			case 4 :
+				System.out.println("Please type in your user name:");
+				employeeUser = in.next();
+				System.out.println("Please type in your password:");
+				employeePass = in.next();
+
+				findEmployee = er.getUsername(employeeUser);
+				// now it should return a boolean.
+				findEmployeePass = er.getPassword(employeeUser, employeePass);
+
+				realEmployee = er.getById(findEmployee);
+
+				try {
+					if (employeeUser.equals(realEmployee.getUsername()) && findEmployeePass == true) {
+						// can now do what I want here as it works as intended.
+						System.out.println(realEmployee);
+						employeeLogin();
+						running = false;
+
+					} else {
+						System.out.println("Please retype your username and password");
+					}
+				} catch (NullPointerException e) {
+					System.out.println(er.getUsername(employeeUser));
+					System.out.println(e.getStackTrace());
+				}
+				break;
 				
 				
 			default:
@@ -81,6 +107,10 @@ public class ProcessInput {
 	public void login() {
 		System.out.println("Please type Deposit and then an amount to deposit an amount in you account");
 		System.out.println("\n Type withdraw to withdraw an amount");
+		
+	}
+	public void employeeLogin() {
+		System.out.println("Please type out access to see the user accounts");
 		
 	}
 }
