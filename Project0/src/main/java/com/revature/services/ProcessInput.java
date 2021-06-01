@@ -17,9 +17,10 @@ public class ProcessInput {
 		EmployeeRepository er = new EmployeeRepository();
 		boolean running = true;
 		String username, password ;
-		User realUser, realPass; //way to hold the users maybe
-		int findUser, findPass;
-		
+		User realUser; //way to hold the users maybe
+		int findUser ;
+		//might change this
+		boolean findPass;
 		//ints to find the username and password in the list maybe.
 		//ideally we want a way to close this while loop.
 		//ok it doesnt let you log out yet.
@@ -30,10 +31,13 @@ public class ProcessInput {
 			username = in.nextLine();
 			System.out.println("Please type in your password:");
 			password = in.nextLine();
+			
 			findUser = ur.getUsername(username);
-			findPass = ur.getPassword(password);
+			//now it should return a boolean.
+			findPass = ur.getPassword(username,password);
+			
 			realUser = ur.getById(findUser);
-			realPass = ur.getById(findPass);
+			
 			//me testing
 			System.out.println(findUser + "This is find user");
 			System.out.println(username + "This is username");
@@ -45,7 +49,7 @@ public class ProcessInput {
 			//remove this.
 			//&& password.equals(ur.getPassword(password))))
 			try {
-			if(username == realUser.getUsername()) {
+			if(username == realUser.getUsername() && findPass == true) {
 				//here we will want to log into the program and show the account
 				//for now we will pass a  dummy function
 				//login();

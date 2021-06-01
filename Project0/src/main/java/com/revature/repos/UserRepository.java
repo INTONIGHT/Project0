@@ -47,11 +47,16 @@ public class UserRepository implements GenericRepository<User>{
 	//whereas it should find the user with said password
 	//ie you pass in the username then check to see if
 	//the password exists.
-	public int getPassword(String password) {
-		User u = MockDB.userList.stream()
-				.filter((user) -> user.getPassword().equals(password))
-				.findFirst().orElse(null);
-		return u.getId();
+	public boolean getPassword(String username,String password) {
+		UserRepository ur = new UserRepository();
+		User temp = ur.getById(getUsername(username));
+		if(temp.getPassword().equals(password)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
 	}
 	@Override
 	public List<User> getAll() {
