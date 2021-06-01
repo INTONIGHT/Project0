@@ -35,17 +35,23 @@ public class UserRepository implements GenericRepository<User>{
 	}
 	//a funciton to filter the employee list to get a username.
 	public int getUsername(String username) {
+		
 		User u = MockDB.userList.stream()
-				.filter((user) -> user.getUsername() == username)
+				.filter((user) -> user.getUsername().equals(username))
 				.findFirst().orElse(null);
 		return u.getId();
 		
 	}
-	public String getPassword(String password) {
+	//ok now this one breaks but i think i know why
+	//this is searching the users based on passsword
+	//whereas it should find the user with said password
+	//ie you pass in the username then check to see if
+	//the password exists.
+	public int getPassword(String password) {
 		User u = MockDB.userList.stream()
-				.filter((user) -> user.getPassword() == password)
+				.filter((user) -> user.getPassword().equals(password))
 				.findFirst().orElse(null);
-		return u.getPassword();
+		return u.getId();
 	}
 	@Override
 	public List<User> getAll() {

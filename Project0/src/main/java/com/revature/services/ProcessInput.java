@@ -31,9 +31,13 @@ public class ProcessInput {
 			System.out.println("Please type in your password:");
 			password = in.nextLine();
 			findUser = ur.getUsername(username);
-			findPass = ur.getUsername(password);
+			findPass = ur.getPassword(password);
 			realUser = ur.getById(findUser);
 			realPass = ur.getById(findPass);
+			//me testing
+			System.out.println(findUser + "This is find user");
+			System.out.println(username + "This is username");
+			System.out.println(realUser + "This is real user");
 			//here we will want to verify that the username
 			//and password are correct.
 			//this might not work
