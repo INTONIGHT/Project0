@@ -40,6 +40,14 @@ public class EmployeeLogin {
 				System.out.println("please type what you would like to change for the user");
 				System.out.println("You should try to format it to be a user with the changes in it");
 				//will try to implement ur.modify();
+				
+				break;
+			case "Logout":
+				System.out.println("Goodbye");
+				running = false;
+				break;
+			default:
+					System.out.println("Please type a valid input");
 			}
 		}
 	}
