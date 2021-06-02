@@ -85,7 +85,8 @@ public class ProcessInput {
 					if (employeeUser.equals(realEmployee.getUsername()) && findEmployeePass == true) {
 						// can now do what I want here as it works as intended.
 						System.out.println(realEmployee);
-						employeeLogin();
+						EmployeeLogin el = new EmployeeLogin();
+						el.loginEmployee();
 						running = false;
 
 					} else {
@@ -107,8 +108,5 @@ public class ProcessInput {
 	}
 
 	
-	public void employeeLogin() {
-		System.out.println("Please type out access to see the user accounts");
-		
-	}
+	
 }
