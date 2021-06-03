@@ -31,7 +31,7 @@ public class JDBCConnection {
 			//we use properties to save it that way its a bit more secure.
 			Properties props = new Properties();
 			InputStream input = JDBCConnection.class.getClassLoader()
-								.getResourceAsStream("connection.properties");
+								.getResourceAsStream("connections.properties");
 			//just use this when you connect dont need to memorize
 			//a secure way to log in.
 			props.load(input);
@@ -50,6 +50,7 @@ public class JDBCConnection {
 		}
 		return null;
 	}
+	
 	
 	
 }
