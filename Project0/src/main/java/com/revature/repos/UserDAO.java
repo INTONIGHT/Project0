@@ -119,13 +119,30 @@ private Connection conn = JDBCConnection.getConnection();
 	}
 
 	@Override
-	public void update(User change) {
-		// TODO Auto-generated method stub
-		
+	public boolean update(User u) {
+		String sql = "call update_user(?,?,?,?,?,?);";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, u.getId());
+			ps.setString(2, u.getUsername());
+			ps.setString(3,u.getPassword());
+			ps.setString(4, u.getRole());
+			ps.setBoolean(5, u.isApproved());
+			//have to set it to float as the sql side didnt have double
+			ps.setFloat(6, (float) u.getBalance());
+			boolean success = ps.execute();
+			if(success){
+				return true;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	@Override
-	public void delete(User t) {
+	public boolean delete(User t) {
+		//make stored procedure the delete method
 		// TODO Auto-generated method stub
 		
 	}

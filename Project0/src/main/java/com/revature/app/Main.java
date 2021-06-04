@@ -28,11 +28,14 @@ public class Main {
 //		udao.add(u6);
 //		udao.add(u7);
 //		udao.add(u8);
-		
-		//udao.add(dummy);
+//		
+//		udao.add(dummy);
 //		System.out.println(udao.getAll());
 //		System.out.println(udao.getById(1));
 		//ok and now its working.
+		User test = new User(23,"Stupid","password","User",true,69);
+		//update is working just throws an error.
+		//udao.update(test);
 		ProcessInput pi = new ProcessInput();
 		pi.processString();
 		//i had to take out the excess code.

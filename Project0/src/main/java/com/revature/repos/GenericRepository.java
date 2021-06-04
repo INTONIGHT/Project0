@@ -8,7 +8,7 @@ public interface GenericRepository <T>{
 	public T add(T t);
 	public T getById(Integer id);
 	public List<T> getAll();
-	public void update(T change);
-	public void delete(T t);
+	public boolean update(T change);
+	public boolean delete(T t);
 	
 }

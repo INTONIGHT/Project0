@@ -72,23 +72,16 @@ public class ProcessInput {
 				System.out.println("Please type in your password:");
 				employeePass = in.next();
 
-				findEmployee = er.getUsername(employeeUser);
-				// now it should return a boolean.
-				findEmployeePass = er.getPassword(employeeUser, employeePass);
-
-				realEmployee = er.getById(findEmployee);
-				//change this so it can pull from the user dao.
+				
 				try {
-					if (employeeUser.equals(realEmployee.getUsername()) && findEmployeePass == true) {
+					udao.getUser(employeeUser, employeePass);
 						// can now do what I want here as it works as intended.
-						System.out.println(realEmployee);
+						System.out.println(udao.getUser(employeeUser, employeePass));
 						EmployeeLogin el = new EmployeeLogin();
 						el.loginEmployee();
 						running = false;
 
-					} else {
-						System.out.println("Please retype your username and password");
-					}
+					
 				} catch (NullPointerException e) {
 					System.out.println(er.getUsername(employeeUser));
 					System.out.println(e.getStackTrace());
