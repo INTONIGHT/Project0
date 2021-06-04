@@ -141,10 +141,20 @@ private Connection conn = JDBCConnection.getConnection();
 	}
 
 	@Override
-	public boolean delete(User t) {
-		//make stored procedure the delete method
-		// TODO Auto-generated method stub
-		
+	public boolean delete(User u) {
+		String sql = "delete from users where id = ?;";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, u.getId());
+			boolean success = ps.execute();
+			if(success) {
+				return true;
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 }

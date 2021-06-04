@@ -34,6 +34,7 @@ public class Main {
 //		System.out.println(udao.getById(1));
 		//ok and now its working.
 		User test = new User(23,"Stupid","password","User",true,69);
+		udao.delete(test);
 		//update is working just throws an error.
 		//udao.update(test);
 		ProcessInput pi = new ProcessInput();
