@@ -22,16 +22,16 @@ public class Main {
 		User u6 = new User(5,"Kaladin","password","user",true,26);
 		User u7 = new User(6,"Elend","password","user",true,125);
 		User u8 = new User(1,"Admin","password","employee",true,5);
-		udao.add(u3);
-		udao.add(u4);
-		udao.add(u5);
-		udao.add(u6);
-		udao.add(u7);
-		udao.add(u8);
+//		udao.add(u3);
+//		udao.add(u4);
+//		udao.add(u5);
+//		udao.add(u6);
+//		udao.add(u7);
+//		udao.add(u8);
 		
 		//udao.add(dummy);
-		System.out.println(udao.getAll());
-		System.out.println(udao.getById(1));
+//		System.out.println(udao.getAll());
+//		System.out.println(udao.getById(1));
 		//ok and now its working.
 		ProcessInput pi = new ProcessInput();
 		pi.processString();

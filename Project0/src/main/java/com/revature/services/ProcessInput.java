@@ -4,18 +4,21 @@ import java.util.Scanner;
 
 import com.revature.models.User;
 import com.revature.repos.EmployeeRepository;
+import com.revature.repos.UserDAO;
 import com.revature.repos.UserRepository;
 import com.revature.utils.MockDB;
 import com.revature.services.CreateAccount;
 
 public class ProcessInput {
-
+//this is where the user actually logs in i know i should
+	//probably rename it.
 	public void processString() {
 		// try to change this logic to fit what Ive designed.
 		Scanner in = new Scanner(System.in);
 		// for now this is dummy data later on we will change this
 		UserRepository ur = new UserRepository();
 		EmployeeRepository er = new EmployeeRepository();
+		UserDAO udao = new UserDAO();
 		CreateAccount ca = new CreateAccount();
 		boolean running = true;
 		String username, password, employeeUser, employeePass;
@@ -41,25 +44,19 @@ public class ProcessInput {
 				username = in.next();
 				System.out.println("Please type in your password:");
 				password = in.next();
-
-				findUser = ur.getUsername(username);
-				// now it should return a boolean.
-				findPass = ur.getPassword(username, password);
-
-				realUser = ur.getById(findUser);
+				
+				
 
 				try {
-					if (username.equals(realUser.getUsername()) && findPass == true) {
+						udao.getUser(username, password); 
 						// can now do what I want here as it works as intended.
-						System.out.println(realUser);
+						System.out.println(udao.getUser(username, password));
 						//this is to make the method in a different class.
 						Login log = new Login();
 						log.LoginUser();
 						running = false;
 
-					} else {
-						System.out.println("Please retype your username and password");
-					}
+					
 				} catch (NullPointerException e) {
 					System.out.println(ur.getUsername(username));
 					System.out.println(e.getStackTrace());
@@ -80,7 +77,7 @@ public class ProcessInput {
 				findEmployeePass = er.getPassword(employeeUser, employeePass);
 
 				realEmployee = er.getById(findEmployee);
-
+				//change this so it can pull from the user dao.
 				try {
 					if (employeeUser.equals(realEmployee.getUsername()) && findEmployeePass == true) {
 						// can now do what I want here as it works as intended.
