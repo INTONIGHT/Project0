@@ -6,7 +6,7 @@ import com.revature.models.User;
 import com.revature.utils.MockDB;
 
 public class UserRepository implements GenericRepository<User>{
-
+//deprecated
 	@Override
 	public User add(User u) {
 		//i want to first check if the list contains that user.
@@ -60,16 +60,16 @@ public class UserRepository implements GenericRepository<User>{
 	}
 
 	@Override
-	public void update(User change) {
+	public boolean update(User change) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public void delete(User u) {
+	public boolean delete(User u) {
 		//for now we will allow user delete ideally
 		//only an employee should be able to do this.
-		MockDB.userList.remove(u);
+		return false;
 	}
 
 	

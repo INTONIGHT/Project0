@@ -22,10 +22,10 @@ public class ProcessInput {
 		CreateAccount ca = new CreateAccount();
 		boolean running = true;
 		String username, password, employeeUser, employeePass;
-		User realUser, realEmployee;
-		int findUser, switchCase, findEmployee;
+		
+		int  switchCase;
 		// might change this
-		boolean findPass ,findEmployeePass;
+		
 		// ints to find the username and password in the list maybe.
 		// ideally we want a way to close this while loop.
 		
@@ -49,11 +49,8 @@ public class ProcessInput {
 
 				try {
 						udao.getUser(username, password); 
-						// can now do what I want here as it works as intended.
-						System.out.println(udao.getUser(username, password));
-						//this is to make the method in a different class.
 						Login log = new Login();
-						log.LoginUser();
+						log.LoginUser(username,password);
 						running = false;
 
 					
