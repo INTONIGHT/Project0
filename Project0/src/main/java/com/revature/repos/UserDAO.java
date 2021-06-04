@@ -44,7 +44,24 @@ private Connection conn = JDBCConnection.getConnection();
 
 	@Override
 	public User getById(Integer id) {
-		// TODO Auto-generated method stub
+		String sql = "select * from users where id = ?;";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				User u = new User();
+				u.setId(rs.getInt("id"));
+				u.setUsername(rs.getString("username"));
+				u.setPassword(rs.getString("password"));
+				u.setRole(rs.getString("role"));
+				u.setApproved(rs.getBoolean("isApproved"));
+				u.setBalance(rs.getDouble("balance"));
+				return u;
+			}
+	}catch(SQLException e) {
+			
+		}
 		return null;
 	}
 
