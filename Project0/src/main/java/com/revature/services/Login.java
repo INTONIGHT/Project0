@@ -7,7 +7,8 @@ import com.revature.repos.AccountDAO;
 import com.revature.repos.UserDAO;
 
 public class Login {
-
+//While thi is names login this is what the user can do once logged in
+	//we pass the username and password to set it to the userdao.
 	public void LoginUser(String username, String password) {
 		
 		System.out.println("Please type Deposit and then an amount to deposit an amount in you account");
@@ -19,6 +20,9 @@ public class Login {
 		double depositAmt, withdrawAmt ,temp;
 		AccountDAO adao = new AccountDAO();
 		UserDAO udao = new UserDAO();
+		//grab the userdata then assign it to an object of
+		//type user in order to maniupulate how we want
+		
 		boolean running = true;
 		User u = new User();
 		u = udao.getUser(username, password);
@@ -50,9 +54,6 @@ public class Login {
 			u.setBalance(temp - withdrawAmt);
 			break;
 		case "Access":
-			//will have to let swapping between accounts.
-			//hard coding for now.
-			
 			
 			System.out.println("Your current account balance is " + adao.getBalance(u.getId()));
 			break;
