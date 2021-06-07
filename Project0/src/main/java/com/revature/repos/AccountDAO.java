@@ -52,5 +52,23 @@ public class AccountDAO implements Account{
 		// TODO Auto-generated method stub
 		
 	}
-
+	public boolean createUser(String username,String password,String role,double balance) {
+		//might have to modify this lots of variables to take in
+		String sql = "insert into users values("
+				+"default,?,?,?,false,?);";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ps.setString(3, role);
+			ps.setDouble(4, balance);
+			boolean success = ps.execute();
+			if(success) {
+				return true;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

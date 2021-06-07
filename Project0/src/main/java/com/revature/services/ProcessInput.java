@@ -68,7 +68,10 @@ public class ProcessInput {
 				employeeUser = in.next();
 				System.out.println("Please type in your password:");
 				employeePass = in.next();
-
+				if(udao.getUser(employeeUser, employeePass).getRole() != "employee") {
+					System.out.println("You cant login ");
+					running = false;
+				}
 				
 				try {
 					udao.getUser(employeeUser, employeePass);

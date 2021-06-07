@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.revature.models.User;
 import com.revature.utils.MockDB;
-
+//deprecated
 public class EmployeeRepository implements GenericRepository<User>{
 //while this might seem like it adds duplication of code it might
 	//be better to have a seperate repo for employees in case I need to 

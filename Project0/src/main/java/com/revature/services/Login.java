@@ -14,7 +14,8 @@ public class Login {
 		System.out.println("Please type Deposit and then an amount to deposit an amount in you account");
 		System.out.println("\n Type Withdraw to withdraw an amount");
 		System.out.println("\n Type Access to see your accounts value");
-		System.out.println("\n Type Create to create another account");
+		System.out.println("\n Type Create to create another bank account assocaited with your user");
+		System.out.println("\n Type Transfer to transfer money between accounts");
 		System.out.println("\n Type Logout to leave");
 		Scanner in = new Scanner(System.in);
 		double depositAmt, withdrawAmt ,temp;
@@ -54,8 +55,8 @@ public class Login {
 			u.setBalance(temp - withdrawAmt);
 			break;
 		case "Access":
-			
-			System.out.println("Your current account balance is " + adao.getBalance(u.getId()));
+			//Perhaps add a way to see each individual account
+			System.out.println("Your current account balances are " + adao.getBalance(u.getId()));
 			break;
 		case "Create":
 			
