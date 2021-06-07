@@ -31,6 +31,10 @@ public class CreateAccount {
 		String role = "user";
 		//this is a hacky way to hard code this.
 		adao.createUser(username, password,role, amount); 
+		int userId = udao.getUser(username, password).getId();
+		String accountName = "Savings";
+		//just hard coding the account name. ideally would ask but ehhh.
+		adao.createAccount(amount, accountName, userId);
 		System.out.println("your account request has been sent in");
 		
 		

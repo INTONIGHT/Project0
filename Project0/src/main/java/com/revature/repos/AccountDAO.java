@@ -71,4 +71,22 @@ public class AccountDAO implements Account{
 		}
 		return false;
 	}
+	public boolean createAccount(double balance,String accountName,int userId) {
+		String sql = "insert into accounts values("
+				+"default,?,?,?);";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setDouble(1, balance);
+			ps.setString(2, accountName);
+			ps.setInt(3, userId);
+			boolean success = ps.execute();
+			if(success) {
+				return true;
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
