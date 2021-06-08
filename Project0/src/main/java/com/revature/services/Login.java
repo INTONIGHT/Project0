@@ -47,12 +47,11 @@ public class Login {
 		case "Withdraw" :
 			System.out.println("Type the amount you wish to withdraw");
 			withdrawAmt = in.nextDouble();
-			temp = u.getBalance();
-			if(withdrawAmt > temp) {
-				System.out.println("insufficient funds please withdraw less");
-				return;
-			}
-			u.setBalance(temp - withdrawAmt);
+			System.out.println("Type the account name you want to withdraw from");
+			String accountName = in.next();
+			int id = u.getId();
+			adao.withdraw(withdrawAmt, id,accountName);
+			System.out.println("you have withdrawn "+withdrawAmt+" from your "+accountName+" account");
 			break;
 		case "Access":
 			//Perhaps add a way to see each individual account

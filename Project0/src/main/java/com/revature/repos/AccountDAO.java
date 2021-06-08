@@ -11,7 +11,8 @@ import com.revature.models.User;
 import com.revature.utils.JDBCConnection;
 
 public class AccountDAO implements Account{
-	private Connection conn = JDBCConnection.getConnection();	
+	private Connection conn = JDBCConnection.getConnection();
+	UserDAO udao = new UserDAO();
 	public ArrayList<Double> getBalance(Integer id) {
 		String sql = "select u.username,a.accountbalance,a.accountname\r\n" + 
 				"from users u \r\n" + 
@@ -42,15 +43,53 @@ public class AccountDAO implements Account{
 	}
 
 	@Override
-	public void withdraw() {
-		// TODO Auto-generated method stub
-		
+	public double withdraw(double amount,int id,String accountName) {
+		String sql = "update users set balance = ? where id =? ;";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			//i have to make sure the amount sent in is the
+			//difference between the account balance and amount put in.
+			//creating a user so I can manipulate it easier.
+			User u = udao.getById(id);
+			double userAccountValue = u.getBalance();
+			if(amount > userAccountValue) {
+				System.out.println("your amount is greater than whats in your account");
+				return -1;
+			}
+			//setting the amount to be equal to the users account value minus what they are withdrawing
+			double temp = userAccountValue - amount;
+			amount = temp;
+			ps.setDouble(1, amount);
+			ps.setInt(2, id);
+			boolean success = ps.execute();
+			//not ideal to do this.
+			updateAccount(amount,accountName,id);
+			if(success) {
+				//returning the amount so it can be printed out
+				return amount;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		//this can be an error amount.
+		return -1;
 	}
-
+	public void updateAccount(double amount,String accountName,int id) {
+	String sql = "update accounts set accountBalance = ? where accountName = ? and user_id =? ;";
+	try {
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setDouble(1, amount);
+		ps.setString(2,accountName);
+		ps.setInt(3, id);
+		ps.execute();
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+	}
 	@Override
-	public void deposit() {
+	public double deposit(double amount,int id,String accountName) {
 		// TODO Auto-generated method stub
-		
+		return -1;
 	}
 	public boolean createUser(String username,String password,String role,double balance) {
 		//might have to modify this lots of variables to take in
@@ -89,4 +128,5 @@ public class AccountDAO implements Account{
 		}
 		return false;
 	}
+	
 }
