@@ -53,10 +53,18 @@ public class Login {
 			break;
 		case "Access":
 			//Perhaps add a way to see each individual account
-			System.out.println("Your current account balances are " + adao.getBalance(u.getId()));
+			int user_id = u.getId();
+			for(int i =0;i<adao.getBalance(user_id).size();i++) {
+				System.out.println("your account balances are "+
+			adao.getBalance(user_id).get(i) +" "+
+			adao.getAccountNames(user_id).get(i)
+			+" account");
+			}
 			break;
 		case "Create":
 			
+			break;
+		case "Transfer":
 			break;
 		case "Logout":
 			System.out.println("Have a good day!");

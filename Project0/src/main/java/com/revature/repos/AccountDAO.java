@@ -41,7 +41,27 @@ public class AccountDAO implements Account{
 		result.add(-1.0);
 		return result;
 	}
-
+	public ArrayList<String> getAccountNames(int id){
+		String sql = "select u.username,a.accountbalance,a.accountname\r\n" + 
+				"from users u \r\n" + 
+				"left join accounts a on u.id = a.user_id \r\n" + 
+				"where u.id = ?;";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			ArrayList<String> result = new ArrayList<String>();
+			while(rs.next()) {
+				result.add(rs.getString("accountname"));
+			}
+			return result;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList<String> result = new ArrayList<String>();
+		result.add("-1.0");
+		return result;
+	}
 	@Override
 	public double withdraw(double amount,int id,String accountName) {
 		String sql = "update accounts set accountbalance = ? where user_id =? and accountname = ?;";
