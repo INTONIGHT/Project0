@@ -34,19 +34,17 @@ public class Login {
 		case "Deposit" :
 			System.out.println("type the amount you wish to deposit");
 			depositAmt = in.nextDouble();
-			temp = u.getBalance();
-			//Im not sure if this will actually permanently change the balance
-			if(depositAmt <= 0) {
-				System.out.println("Please type in a correct amount above $0");
-				//could be fixed for now this is just for testing.
-				return;
-			}
-			u.setBalance(temp + depositAmt);
-			System.out.println("Successfully deposited" + depositAmt + " into your account");
+			System.out.println("please type the account you want to deposit into");
+			String userAccountName = in.next();
+			int userId = u.getId();
+			adao.deposit(depositAmt, userId, userAccountName);
+			System.out.println("You have deposited "+depositAmt+" into your "+userAccountName+ " account");
 			break;
 		case "Withdraw" :
 			System.out.println("Type the amount you wish to withdraw");
 			withdrawAmt = in.nextDouble();
+			
+			
 			System.out.println("Type the account name you want to withdraw from");
 			String accountName = in.next();
 			int id = u.getId();

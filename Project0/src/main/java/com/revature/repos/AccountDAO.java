@@ -44,7 +44,7 @@ public class AccountDAO implements Account{
 
 	@Override
 	public double withdraw(double amount,int id,String accountName) {
-		String sql = "update users set balance = ? where id =? ;";
+		String sql = "update accounts set accountbalance = ? where user_id =? and accountname = ?;";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			//i have to make sure the amount sent in is the
@@ -61,9 +61,11 @@ public class AccountDAO implements Account{
 			amount = temp;
 			ps.setDouble(1, amount);
 			ps.setInt(2, id);
+			ps.setString(3, accountName);
+			
 			boolean success = ps.execute();
 			//not ideal to do this.
-			updateAccount(amount,accountName,id);
+			//updateAccount(amount,accountName,id);
 			if(success) {
 				//returning the amount so it can be printed out
 				return amount;
@@ -74,23 +76,43 @@ public class AccountDAO implements Account{
 		//this can be an error amount.
 		return -1;
 	}
-	public void updateAccount(double amount,String accountName,int id) {
-	String sql = "update accounts set accountBalance = ? where accountName = ? and user_id =? ;";
-	try {
-		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setDouble(1, amount);
-		ps.setString(2,accountName);
-		ps.setInt(3, id);
-		ps.execute();
-	}catch(SQLException e) {
-		e.printStackTrace();
-	}
-	}
 	@Override
 	public double deposit(double amount,int id,String accountName) {
-		// TODO Auto-generated method stub
+		String sql = "update accounts set accountbalance = ? where user_id =? and accountname = ? ;";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			User u = udao.getById(id);
+			double userAccountValue = u.getBalance();
+			double temp = userAccountValue + amount;
+			amount = temp;
+			ps.setDouble(1, amount);
+			ps.setInt(2, id);
+			ps.setString(3, accountName);
+			boolean success = ps.execute();
+			//updateAccount(amount,accountName,id);
+			if(success) {
+				return amount;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		return -1;
 	}
+	//im not sure if this is needed ill keep it here in case
+	//i update my code to work as it should
+//	public void updateAccount(double amount,String accountName,int id) {
+//	String sql = "update accounts set accountBalance = ? where accountName = ? and user_id =? ;";
+//	try {
+//		PreparedStatement ps = conn.prepareStatement(sql);
+//		ps.setDouble(1, amount);
+//		ps.setString(2,accountName);
+//		ps.setInt(3, id);
+//		ps.execute();
+//	}catch(SQLException e) {
+//		e.printStackTrace();
+//	}
+//	}
+	
 	public boolean createUser(String username,String password,String role,double balance) {
 		//might have to modify this lots of variables to take in
 		String sql = "insert into users values("
