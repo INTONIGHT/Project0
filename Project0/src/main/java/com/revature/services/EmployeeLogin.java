@@ -48,6 +48,7 @@ public class EmployeeLogin {
 				}else {
 					System.out.println("Please type Yes or No");
 				}
+				break;
 			case "Modify":
 				//modifies user with an id and can change as desired.
 				System.out.println("Please type the id of the user you want to modify");

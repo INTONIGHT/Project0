@@ -13,7 +13,7 @@ import com.revature.utils.JDBCConnection;
 public class UserDAO implements GenericRepository<User> {
 private Connection conn = JDBCConnection.getConnection();
 	
-//change this so that it doesnt add duplicates in the future.
+
 @Override
 	public User add(User u) {
 		//id username pass role isapproved balance
@@ -30,13 +30,13 @@ private Connection conn = JDBCConnection.getConnection();
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
 				u.setId(rs.getInt("id"));
-				//this part might not be necessary. you can
+				
 				//take the service layer and then exceute the query.
 				u.setUsername(rs.getString("username"));
 				u.setPassword(rs.getString("password"));
 				u.setRole(rs.getString("role"));
 				u.setApproved(rs.getBoolean("isApproved"));
-				//this might trhow an error
+				
 				u.setBalance(rs.getDouble("balance"));
 				return u;
 			}
@@ -68,8 +68,7 @@ private Connection conn = JDBCConnection.getConnection();
 		}
 		return null;
 	}
-	//you can add a getuser in here to make sure you can
-	//get a user based on id and password for process inpuit.
+	
 	public User getUser(String username,String password) {
 		String sql = "select * from users where username = ? "
 				+ "and password = ?;";

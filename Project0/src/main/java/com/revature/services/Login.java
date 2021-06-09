@@ -46,7 +46,7 @@ public class Login {
 			adao.deposit(depositAmt, userId, userAccountName);
 			transaction = "You have deposited " + depositAmt + " into "+userAccountName+" account";
 			System.out.println(transaction);
-			//the thir dvalue has to be what account number they are.
+			
 			transactionId = adao.getAccountId(u.getId(), userAccountName);
 			tdao.createTransaction(username, transaction, transactionId);
 			break;
@@ -65,7 +65,7 @@ public class Login {
 			
 			break;
 		case "Access":
-			//Perhaps add a way to see each individual account
+			
 			int user_id = u.getId();
 			for(int i =0;i<adao.getBalance(user_id).size();i++) {
 				System.out.println("your account balances are "+
