@@ -62,6 +62,22 @@ public class AccountDAO implements Account{
 		result.add("-1.0");
 		return result;
 	}
+	public int getAccountId(int userId,String accountName) {
+		String sql = "select id from accounts where user_id = ? and accountname = ?; ";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, userId);
+			ps.setString(2, accountName);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				int result = rs.getInt("id");
+				return result;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	public double getBalance(int id,String accountName) {
 		String sql ="select accountbalance from accounts where user_id = ? and accountname = ?;";
 		try {

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.revature.models.User;
 import com.revature.repos.AccountDAO;
+import com.revature.repos.TransactionDAO;
 import com.revature.repos.UserDAO;
 
 public class Login {
@@ -18,7 +19,7 @@ public class Login {
 		System.out.println("\n Type Transfer to transfer money between accounts");
 		System.out.println("\n Type Logout to leave");
 		Scanner in = new Scanner(System.in);
-		double depositAmt, withdrawAmt ,temp;
+		double depositAmt, withdrawAmt;
 		AccountDAO adao = new AccountDAO();
 		UserDAO udao = new UserDAO();
 		//grab the userdata then assign it to an object of
@@ -27,8 +28,9 @@ public class Login {
 		boolean running = true;
 		User u = new User();
 		u = udao.getUser(username, password);
-		
-		
+		TransactionDAO tdao = new TransactionDAO();
+		String transaction = "";
+		int transactionId ;
 		while(running) {
 		switch(in.next()) {
 		case "Deposit" :
@@ -38,7 +40,11 @@ public class Login {
 			String userAccountName = in.next();
 			int userId = u.getId();
 			adao.deposit(depositAmt, userId, userAccountName);
-			System.out.println("You have deposited "+depositAmt+" into your "+userAccountName+ " account");
+			transaction = "You have deposited " + depositAmt + " into "+userAccountName+" account";
+			System.out.println(transaction);
+			//the thir dvalue has to be what account number they are.
+			transactionId = adao.getAccountId(u.getId(), userAccountName);
+			tdao.createTransaction(username, transaction, transactionId);
 			break;
 		case "Withdraw" :
 			System.out.println("Type the amount you wish to withdraw");
