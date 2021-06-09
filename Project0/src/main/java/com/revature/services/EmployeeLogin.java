@@ -1,9 +1,11 @@
 package com.revature.services;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.revature.models.User;
 import com.revature.repos.AccountDAO;
+import com.revature.repos.UserDAO;
 
 
 public class EmployeeLogin {
@@ -19,10 +21,14 @@ public class EmployeeLogin {
 		
 		AccountDAO adao = new AccountDAO();
 		User u = new User();
+		UserDAO udao = new UserDAO();
 		while(running) {
 			switch(in.next()) {
 			case "Access":
-				//System.out.println(ur.getAll());
+				List<User> users = udao.getAll();
+				for(User customers :users) {
+					System.out.println(customers);
+				}
 				break;
 			case "Approve":
 				System.out.println("Type out the id of the user you want to approve");
