@@ -2,6 +2,7 @@ package com.revature.app;
 
 import java.util.List;
 
+import com.revature.logging.AppLogger;
 import com.revature.models.User;
 
 import com.revature.repos.UserDAO;
@@ -10,9 +11,11 @@ import com.revature.services.ProcessInput;
 
 //main method will run the code here.
 public class Main {
-
+	public static void logInfo(String message) {
+		AppLogger.logger.info(message);
+	}
 	public static void main(String[] args) {
-		
+		AppLogger.logger.info("Program Started");
 		UserDAO udao = new UserDAO();
 		User dummy = new User(6,"dummy","pass","User",true,50);
 		User u3 = new User(2,"Tyler","password","user",true,50);
@@ -36,6 +39,8 @@ public class Main {
 		
 		ProcessInput pi = new ProcessInput();
 		pi.processString();
+		AppLogger.logger.warn("The scanner isnt closed by the program");
+		logInfo("info level");
 		//i had to take out the excess code.
 		
 

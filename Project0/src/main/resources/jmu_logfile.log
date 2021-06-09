@@ -1,0 +1,3 @@
+INFO  | 2021-06-08 21:44:31 | [main] app.Main (Main.java:18) - Program Started
+WARN  | 2021-06-08 21:44:41 | [main] app.Main (Main.java:42) - The scanner isnt closed by the program
+INFO  | 2021-06-08 21:44:41 | [main] app.Main (Main.java:15) - info level

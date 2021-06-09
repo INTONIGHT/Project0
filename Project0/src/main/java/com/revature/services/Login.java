@@ -106,6 +106,7 @@ public class Login {
 			break;
 		case "Logout":
 			System.out.println("Have a good day!");
+			running = false;
 			break;
 			default : 
 				System.out.println("Please try something else");
