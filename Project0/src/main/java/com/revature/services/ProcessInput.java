@@ -3,9 +3,9 @@ package com.revature.services;
 import java.util.Scanner;
 
 import com.revature.models.User;
-import com.revature.repos.EmployeeRepository;
+
 import com.revature.repos.UserDAO;
-import com.revature.repos.UserRepository;
+
 import com.revature.utils.MockDB;
 import com.revature.services.CreateAccount;
 
@@ -16,8 +16,7 @@ public class ProcessInput {
 		// try to change this logic to fit what Ive designed.
 		Scanner in = new Scanner(System.in);
 		// for now this is dummy data later on we will change this
-		UserRepository ur = new UserRepository();
-		EmployeeRepository er = new EmployeeRepository();
+		
 		UserDAO udao = new UserDAO();
 		CreateAccount ca = new CreateAccount();
 		boolean running = true;
@@ -59,7 +58,7 @@ public class ProcessInput {
 
 					
 				} catch (NullPointerException e) {
-					System.out.println(ur.getUsername(username));
+					
 					System.out.println(e.getStackTrace());
 				}
 				break;
@@ -87,14 +86,14 @@ public class ProcessInput {
 
 					
 				} catch (NullPointerException e) {
-					System.out.println(er.getUsername(employeeUser));
+					
 					System.out.println(e.getStackTrace());
 				}
 				break;
 				
 				
 			default:
-				System.out.println("Please type a number between 1 and 3");
+				System.out.println("Please type a number between 1 and 4");
 			}
 
 		}

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import com.revature.models.User;
 import com.revature.repos.AccountDAO;
-import com.revature.repos.UserRepository;
+
 
 public class EmployeeLogin {
 
@@ -16,13 +16,13 @@ public class EmployeeLogin {
 		System.out.println("\n Type Logout to exit");
 		boolean running = true;
 		Scanner in = new Scanner(System.in);
-		UserRepository ur = new UserRepository();
+		
 		AccountDAO adao = new AccountDAO();
 		User u = new User();
 		while(running) {
 			switch(in.next()) {
 			case "Access":
-				System.out.println(ur.getAll());
+				//System.out.println(ur.getAll());
 				break;
 			case "Approve":
 				System.out.println("Type out the id of the user you want to approve");
