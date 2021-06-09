@@ -148,20 +148,7 @@ public class AccountDAO implements Account{
 		deposit(temp,id,accountTo);
 		return temp;	
 	}
-	//im not sure if this is needed ill keep it here in case
-	//i update my code to work as it should
-//	public void updateAccount(double amount,String accountName,int id) {
-//	String sql = "update accounts set accountBalance = ? where accountName = ? and user_id =? ;";
-//	try {
-//		PreparedStatement ps = conn.prepareStatement(sql);
-//		ps.setDouble(1, amount);
-//		ps.setString(2,accountName);
-//		ps.setInt(3, id);
-//		ps.execute();
-//	}catch(SQLException e) {
-//		e.printStackTrace();
-//	}
-//	}
+
 	
 	public boolean createUser(String username,String password,String role,double balance) {
 		//might have to modify this lots of variables to take in
@@ -195,6 +182,21 @@ public class AccountDAO implements Account{
 				return true;
 			}
 			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public boolean approveUser(int id,boolean approvalStatus) {
+		String sql ="update users set isApproved = ? where id = ?; ";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setBoolean(1, approvalStatus);
+			ps.setInt(2, id);
+			boolean success = ps.execute();
+			if(success) {
+				return true;
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

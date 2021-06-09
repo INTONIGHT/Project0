@@ -49,6 +49,10 @@ public class ProcessInput {
 
 				try {
 						udao.getUser(username, password); 
+						if(udao.getUser(username, password).isApproved() == false) {
+							System.out.println("please wait until an employee approves your account");
+							return;
+						}
 						Login log = new Login();
 						log.LoginUser(username,password);
 						running = false;
