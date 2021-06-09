@@ -62,9 +62,28 @@ public class Login {
 			}
 			break;
 		case "Create":
-			
+			System.out.println("Please type either Checkings or Savings for type of account you want to create");
+			String newAccountName = in.next();
+			System.out.println("Type the amount you want in it");
+			double accountDeposit = in.nextDouble();
+			int temp_id = u.getId();
+			//i ran out of ideas for var names 
+			adao.createAccount(accountDeposit, newAccountName, temp_id);
 			break;
 		case "Transfer":
+			int u_id = u.getId();
+			if(adao.getAccountNames(u_id).size() ==1) {
+				System.out.println("please create another account before transferring");
+				return;
+			}
+			System.out.println("Type the account to transfer from");
+			String firstAccount = in.next();
+			System.out.println("Type the account to transer to");
+			String secondAccount = in.next();
+			System.out.println("Type how much you want to transfer");
+			double transferAmt = in.nextDouble();
+			double whatTransfered = adao.transfer(transferAmt, u_id, firstAccount, secondAccount);
+			System.out.println(whatTransfered + " was transferred");
 			break;
 		case "Logout":
 			System.out.println("Have a good day!");

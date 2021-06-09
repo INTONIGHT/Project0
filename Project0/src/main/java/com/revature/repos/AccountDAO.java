@@ -62,6 +62,24 @@ public class AccountDAO implements Account{
 		result.add("-1.0");
 		return result;
 	}
+	public double getBalance(int id,String accountName) {
+		String sql ="select accountbalance from accounts where user_id = ? and accountname = ?;";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.setString(2, accountName);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				double result = rs.getDouble("accountbalance");
+				return result;
+			}
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return -1.0;
+	}
 	@Override
 	public double withdraw(double amount,int id,String accountName) {
 		String sql = "update accounts set accountbalance = ? where user_id =? and accountname = ?;";
@@ -70,8 +88,11 @@ public class AccountDAO implements Account{
 			//i have to make sure the amount sent in is the
 			//difference between the account balance and amount put in.
 			//creating a user so I can manipulate it easier.
-			User u = udao.getById(id);
-			double userAccountValue = u.getBalance();
+			
+			AccountDAO adao = new AccountDAO();
+			double userAccountValue = adao.getBalance(id, accountName);
+			
+			System.out.println(userAccountValue +"uservalue");
 			if(amount > userAccountValue) {
 				System.out.println("your amount is greater than whats in your account");
 				return -1;
@@ -96,13 +117,15 @@ public class AccountDAO implements Account{
 		//this can be an error amount.
 		return -1;
 	}
+	//ok i have to change get balance.
 	@Override
 	public double deposit(double amount,int id,String accountName) {
 		String sql = "update accounts set accountbalance = ? where user_id =? and accountname = ? ;";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
-			User u = udao.getById(id);
-			double userAccountValue = u.getBalance();
+			AccountDAO adao = new AccountDAO();
+			double userAccountValue = adao.getBalance(id, accountName);
+			
 			double temp = userAccountValue + amount;
 			amount = temp;
 			ps.setDouble(1, amount);
@@ -117,6 +140,13 @@ public class AccountDAO implements Account{
 			e.printStackTrace();
 		}
 		return -1;
+	}
+	public double transfer(double amount,int id,String accountFrom,String accountTo) {
+		
+		double temp = withdraw(amount,id,accountFrom);
+		
+		deposit(temp,id,accountTo);
+		return temp;	
 	}
 	//im not sure if this is needed ill keep it here in case
 	//i update my code to work as it should
