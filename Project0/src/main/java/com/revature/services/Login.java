@@ -55,7 +55,11 @@ public class Login {
 			String accountName = in.next();
 			int id = u.getId();
 			adao.withdraw(withdrawAmt, id,accountName);
-			System.out.println("you have withdrawn "+withdrawAmt+" from your "+accountName+" account");
+			transaction = "you have withdrawn "+withdrawAmt+" from your "+accountName+" account";
+			System.out.println(transaction);
+			transactionId = adao.getAccountId(u.getId(), accountName);
+			tdao.createTransaction(username, transaction, transactionId);
+			
 			break;
 		case "Access":
 			//Perhaps add a way to see each individual account
@@ -66,6 +70,9 @@ public class Login {
 			adao.getAccountNames(user_id).get(i)
 			+" account");
 			}
+			transaction ="User has accessed their accounts";
+			transactionId = adao.getAccountId(u.getId(), "Checkings");
+			tdao.createTransaction(username, transaction, transactionId);
 			break;
 		case "Create":
 			System.out.println("Please type either Checkings or Savings for type of account you want to create");
@@ -75,6 +82,9 @@ public class Login {
 			int temp_id = u.getId();
 			//i ran out of ideas for var names 
 			adao.createAccount(accountDeposit, newAccountName, temp_id);
+			transaction = "User has attempted to create a transaction";
+			//not sure how to pass a default value.
+			tdao.createTransaction(username, transaction, 1);
 			break;
 		case "Transfer":
 			int u_id = u.getId();
@@ -89,7 +99,10 @@ public class Login {
 			System.out.println("Type how much you want to transfer");
 			double transferAmt = in.nextDouble();
 			double whatTransfered = adao.transfer(transferAmt, u_id, firstAccount, secondAccount);
-			System.out.println(whatTransfered + " was transferred");
+			transaction = whatTransfered + " was transferred";
+			transactionId = adao.getAccountId(u_id, firstAccount);
+			System.out.println(transaction);
+			tdao.createTransaction(username, transaction, transactionId);
 			break;
 		case "Logout":
 			System.out.println("Have a good day!");
