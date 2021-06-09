@@ -71,24 +71,15 @@ public class ProcessInput {
 				employeeUser = in.next();
 				System.out.println("Please type in your password:");
 				employeePass = in.next();
-				if(udao.getUser(employeeUser, employeePass).getRole() != "employee") {
-					System.out.println("You cant login ");
+				if(udao.getUser(employeeUser, employeePass).getRole().equals("employee")) {
+					EmployeeLogin el = new EmployeeLogin();
+					el.loginEmployee();
 					running = false;
+				}else {
+					System.out.println("Please log in as a different user");
+					processString();
 				}
 				
-				try {
-					udao.getUser(employeeUser, employeePass);
-						// can now do what I want here as it works as intended.
-						System.out.println(udao.getUser(employeeUser, employeePass));
-						EmployeeLogin el = new EmployeeLogin();
-						el.loginEmployee();
-						running = false;
-
-					
-				} catch (NullPointerException e) {
-					
-					System.out.println(e.getStackTrace());
-				}
 				break;
 				
 				
