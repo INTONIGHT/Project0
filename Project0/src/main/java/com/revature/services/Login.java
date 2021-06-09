@@ -48,13 +48,12 @@ public class Login {
 			break;
 		case "Withdraw" :
 			System.out.println("Type the amount you wish to withdraw");
-			withdrawAmt = in.nextDouble();
-			
-			
+			withdrawAmt = in.nextDouble();		
 			System.out.println("Type the account name you want to withdraw from");
 			String accountName = in.next();
 			int id = u.getId();
-			adao.withdraw(withdrawAmt, id,accountName);
+			
+			adao.withdraw(withdrawAmt, id, accountName);
 			transaction = "you have withdrawn "+withdrawAmt+" from your "+accountName+" account";
 			System.out.println(transaction);
 			transactionId = adao.getAccountId(u.getId(), accountName);
@@ -99,7 +98,8 @@ public class Login {
 			System.out.println("Type how much you want to transfer");
 			double transferAmt = in.nextDouble();
 			double whatTransfered = adao.transfer(transferAmt, u_id, firstAccount, secondAccount);
-			transaction = whatTransfered + " was transferred";
+			transaction = transferAmt + " was transferred";
+			
 			transactionId = adao.getAccountId(u_id, firstAccount);
 			System.out.println(transaction);
 			tdao.createTransaction(username, transaction, transactionId);
