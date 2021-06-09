@@ -49,10 +49,27 @@ public class EmployeeLogin {
 					System.out.println("Please type Yes or No");
 				}
 			case "Modify":
-				System.out.println("please type what you would like to change for the user");
-				System.out.println("You should try to format it to be a user with the changes in it");
-				//will try to implement ur.modify();
-				
+				//modifies user with an id and can change as desired.
+				System.out.println("Please type the id of the user you want to modify");
+				int select_id = in.nextInt();
+				System.out.println("you will now output any values you want to change,Start with username");
+				String username = in.next();
+				System.out.println("\n Now the password");
+				String password = in.next();
+				String role = "user";
+				boolean approved = true;
+				System.out.println("Type the balance you want them to have");
+				double balance = in.nextDouble();
+				u.setId(select_id);
+				u.setUsername(username);
+				u.setPassword(password);
+				u.setRole(role);
+				u.setApproved(approved);
+				u.setBalance(balance);
+				boolean success = udao.update(u);
+				if(success) {
+					System.out.println("You have succesfully modified the user. pleas tell them the changes");
+				}
 				break;
 			case "Transactions":
 				List<String> transactions = tdao.getAllTransactions();
