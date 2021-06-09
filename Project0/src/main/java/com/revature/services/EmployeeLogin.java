@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.revature.models.User;
 import com.revature.repos.AccountDAO;
+import com.revature.repos.TransactionDAO;
 import com.revature.repos.UserDAO;
 
 
@@ -22,6 +23,7 @@ public class EmployeeLogin {
 		AccountDAO adao = new AccountDAO();
 		User u = new User();
 		UserDAO udao = new UserDAO();
+		TransactionDAO tdao = new TransactionDAO();
 		while(running) {
 			switch(in.next()) {
 			case "Access":
@@ -53,6 +55,10 @@ public class EmployeeLogin {
 				
 				break;
 			case "Transactions":
+				List<String> transactions = tdao.getAllTransactions();
+				for(String t : transactions) {
+					System.out.println(t);
+				}
 				break;
 			case "Logout":
 				System.out.println("Goodbye");
