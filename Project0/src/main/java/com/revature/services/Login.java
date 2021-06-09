@@ -36,6 +36,10 @@ public class Login {
 		case "Deposit" :
 			System.out.println("type the amount you wish to deposit");
 			depositAmt = in.nextDouble();
+			if(depositAmt < 0) {
+				System.out.println("Please input something more than 0");
+				return;
+			}
 			System.out.println("please type the account you want to deposit into");
 			String userAccountName = in.next();
 			int userId = u.getId();
